@@ -1,0 +1,278 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --theme-base: #0a0a0a;
+    --theme-surface: #171717;
+    --theme-surface-hover: #212121;
+    --theme-border: #262626;
+    --theme-text: #fafafa;
+    --theme-text-muted: #a3a3a3;
+    --theme-chart-stroke: #d4d4d4;
+    --theme-chart-dot: #e5e5e5;
+    --theme-chart-bar: #525252;
+    --theme-interactive: #262626;
+    --theme-interactive-hover: #333333;
+  }
+
+  body {
+    font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    color: #fafafa !important;
+    background-color: #0a0a0a !important;
+    letter-spacing: -0.02em;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #fafafa !important;
+    font-family: 'Inter', 'Plus Jakarta Sans', sans-serif !important;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  p, span, label, th, td {
+    font-family: 'Inter', 'Plus Jakarta Sans', sans-serif !important;
+  }
+
+  input, select, textarea, button {
+    outline: none;
+  }
+
+  /* Prevent browser from tinting inputs with light blue or yellow autofill */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 50px #171717 inset !important;
+    -webkit-text-fill-color: #fafafa !important;
+    caret-color: #fafafa !important;
+  }
+}
+
+/* ==========================================================================
+   GLOBAL DESIGN SYSTEM: LOW-SATURATION GRAYSCALE DARK THEME
+   Applies across all existing components & pages without individual edits.
+   ========================================================================== */
+
+/* 1. Base App Container & Body */
+#root, main, .min-h-screen, .app-container {
+  background-color: #0a0a0a !important;
+  color: #fafafa !important;
+}
+
+/* 2. Surfaces & Cards (#171717) */
+.bg-white,
+.bg-slate-50,
+.bg-slate-100,
+.bg-zinc-950,
+.bg-zinc-900,
+.bg-zinc-850,
+.bg-stone-900,
+.bg-stone-950,
+.dashboard-card,
+.vintage-card,
+.editorial-card-light,
+header,
+aside,
+nav[class*="bg-"],
+[class*="rounded-"][class*="border"] {
+  background-color: #171717 !important;
+  color: #fafafa !important;
+  border-color: #262626 !important;
+}
+
+/* Clean background override for outer viewports */
+main, .main-viewport {
+  background-color: #0a0a0a !important;
+}
+
+/* 3. Borders & Dividers (#262626 subtle 1px) */
+*,
+*:before,
+*:after {
+  border-color: #262626;
+}
+
+.border,
+.border-t,
+.border-b,
+.border-l,
+.border-r,
+.border-slate-200,
+.border-slate-300,
+.border-zinc-800,
+.border-zinc-700,
+.border-zinc-600,
+.divide-slate-200 > *,
+.divide-zinc-800 > *,
+.divide-y > *,
+.divide-x > * {
+  border-color: #262626 !important;
+}
+
+/* 4. Typography: Primary (#fafafa) & Secondary/Muted (#a3a3a3) */
+.text-black,
+.text-slate-900,
+.text-zinc-900,
+.text-white,
+.text-pureWhite {
+  color: #fafafa !important;
+}
+
+.text-slate-700,
+.text-slate-600,
+.text-slate-500,
+.text-slate-400,
+.text-zinc-500,
+.text-zinc-400,
+.text-zinc-300,
+.text-muted,
+p:not(.text-primary) {
+  color: #a3a3a3 !important;
+}
+
+/* 5. Inputs, Selects, Textareas */
+input:not([type="checkbox"]):not([type="radio"]),
+select,
+textarea {
+  background-color: #171717 !important;
+  color: #fafafa !important;
+  border: 1px solid #262626 !important;
+  border-radius: 0.375rem !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #525252 !important;
+  box-shadow: 0 0 0 1px #525252 !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #737373 !important;
+}
+
+/* 6. Tables */
+table {
+  color: #fafafa !important;
+  border-color: #262626 !important;
+}
+
+thead, thead tr, th {
+  background-color: #121212 !important;
+  color: #a3a3a3 !important;
+  border-color: #262626 !important;
+}
+
+tbody tr {
+  border-color: #262626 !important;
+  background-color: #171717 !important;
+}
+
+tbody tr:hover {
+  background-color: #212121 !important;
+}
+
+/* 7. Interactive Elements (+/- buttons, icon buttons) */
+/* Dark circular buttons with #262626 background, white icon, subtle hover */
+button[class*="rounded-full"],
+.btn-circle,
+.interactive-ctrl {
+  background-color: #262626 !important;
+  color: #fafafa !important;
+  border: 1px solid #262626 !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+button[class*="rounded-full"]:hover,
+.btn-circle:hover,
+.interactive-ctrl:hover {
+  background-color: #333333 !important;
+  border-color: #404040 !important;
+  color: #ffffff !important;
+}
+
+/* Primary Action Buttons: Muted Grayscale */
+.btn-primary,
+button[type="submit"] {
+  background-color: #fafafa !important;
+  color: #0a0a0a !important;
+  font-weight: 600;
+  border: 1px solid #fafafa !important;
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover,
+button[type="submit"]:hover {
+  background-color: #e5e5e5 !important;
+  color: #0a0a0a !important;
+}
+
+/* Secondary Buttons */
+button:not([type="submit"]):not([class*="rounded-full"]):not([class*="bg-transparent"]) {
+  background-color: #262626;
+  color: #fafafa;
+  border: 1px solid #333333;
+}
+
+button:not([type="submit"]):not([class*="rounded-full"]):not([class*="bg-transparent"]):hover {
+  background-color: #333333;
+}
+
+/* 8. Chart & Data Visualization Styling */
+/* Chart/line strokes #d4d4d4 with data-point dots at #e5e5e5 */
+svg path[class*="stroke-"],
+svg line[class*="stroke-"],
+.recharts-line path,
+.chart-line {
+  stroke: #d4d4d4 !important;
+}
+
+svg circle[class*="fill-"],
+.recharts-line-dot,
+.chart-dot {
+  fill: #e5e5e5 !important;
+  stroke: #171717 !important;
+}
+
+/* Bar chart fills: #525252 (muted gray, no bright accent color) */
+svg rect[class*="fill-"],
+.recharts-bar-rectangle path,
+.recharts-bar-rectangle rect,
+.chart-bar {
+  fill: #525252 !important;
+}
+
+/* 9. Minimalist Grayscale Badges */
+span[class*="rounded"][class*="text-xs"],
+.badge,
+.status-badge {
+  background-color: #212121 !important;
+  color: #fafafa !important;
+  border: 1px solid #262626 !important;
+}
+
+/* 10. Custom Minimalist Grayscale Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #404040;
+}
+
+/* 11. Modal Backdrop */
+.modal-backdrop,
+div[class*="fixed inset-0"][class*="bg-black"] {
+  background-color: rgba(10, 10, 10, 0.85) !important;
+  backdrop-filter: blur(8px);
+}

@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: medassist-portal
+    env: node
+    plan: free
+    region: oregon
+    buildCommand: npm --prefix server install && npm --prefix client install && npm --prefix client run build
+    startCommand: node server/src/index.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: MONGO_URI
+        value: mongodb+srv://lokeshsadhu2007_db_user:4T952ln4GYnIIImk@cluster0.5w67tkt.mongodb.net/medassist?retryWrites=true&w=majority&appName=Cluster0
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 7d
+      - key: CLIENT_URL
+        value: https://medassist-portal.onrender.com
+      - key: GEMINI_API_KEY
+        sync: false
