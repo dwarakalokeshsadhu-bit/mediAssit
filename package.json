@@ -7,11 +7,22 @@
   "scripts": {
     "install:server": "npm --prefix server install",
     "install:client": "npm --prefix client install",
-    "install-all": "npm --prefix server install && npm --prefix client install",
+    "install-all": "npm install && npm --prefix server install && npm --prefix client install",
     "build": "npm --prefix client run build",
     "start": "node server/src/index.js",
     "dev:server": "node --watch server/src/index.js",
     "dev:client": "npm --prefix client run dev",
     "seed": "node server/src/seed/seed.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "morgan": "^1.10.0"
   }
 }
