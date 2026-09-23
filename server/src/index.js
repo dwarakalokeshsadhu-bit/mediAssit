@@ -97,19 +97,24 @@ if (fs.existsSync(clientDistPath)) {
 // Centralized error handler
 app.use(errorHandler);
 
-const server = app.listen(PORT, () => {
-  console.log(`[MedAssist Server] Running on http://localhost:${PORT}`);
-});
-
-// Graceful shutdown
-const shutdown = () => {
-  console.log('\n[MedAssist Server] Shutting down gracefully...');
-  server.close(async () => {
-    await mongoose.connection.close(false);
-    console.log('[MedAssist Server] Database connection closed.');
-    process.exit(0);
+let server;
+if (!process.env.VERCEL) {
+  server = app.listen(PORT, () => {
+    console.log(`[MedAssist Server] Running on http://localhost:${PORT}`);
   });
-};
 
-process.on('SIGINT', shutdown);
-process.on('SIGTERM', shutdown);
+  // Graceful shutdown
+  const shutdown = () => {
+    console.log('\n[MedAssist Server] Shutting down gracefully...');
+    server.close(async () => {
+      await mongoose.connection.close(false);
+      console.log('[MedAssist Server] Database connection closed.');
+      process.exit(0);
+    });
+  };
+
+  process.on('SIGINT', shutdown);
+  process.on('SIGTERM', shutdown);
+}
+
+export default app;
