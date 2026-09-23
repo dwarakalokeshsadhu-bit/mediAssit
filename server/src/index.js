@@ -30,27 +30,28 @@ const PORT = process.env.PORT || 5000;
 // Connect to MongoDB
 connectDB();
 
-// CORS configuration supporting single origin, comma-separated list, or same-origin
-const getAllowedOrigins = () => {
-  const envUrl = process.env.CLIENT_URL;
-  if (!envUrl) return ['http://localhost:5173'];
-  return envUrl.split(',').map((u) => u.trim());
+// Bulletproof CORS for Vercel Frontend + Render Backend
+const isOriginAllowed = (origin) => {
+  if (!origin) return true;
+  if (origin.includes('localhost') || origin.includes('127.0.0.1')) return true;
+  if (origin.endsWith('.vercel.app')) return true;
+  if (origin.endsWith('.onrender.com')) return true;
+  const envOrigins = (process.env.CLIENT_URL || '').split(',').map((u) => u.trim());
+  if (envOrigins.includes(origin) || envOrigins.includes('*')) return true;
+  return true;
 };
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      // Allow requests with no origin (like mobile apps, curl, server-to-server)
-      if (!origin) return callback(null, true);
-      const allowed = getAllowedOrigins();
-      if (allowed.includes(origin) || allowed.includes('*')) {
-        return callback(null, true);
-      }
-      return callback(null, true);
-    },
-    credentials: true,
-  })
-);
+const corsOptions = {
+  origin: (origin, callback) => {
+    callback(null, origin || true);
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
