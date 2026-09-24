@@ -27,18 +27,18 @@ export const ClassicFooter = () => {
   };
 
   return (
-    <footer className="w-full bg-[#0a0a0a] text-[#fafafa] font-sans border-t border-[#262626] selection:bg-[#262626] selection:text-[#fafafa]">
+    <footer className="w-full bg-theme-surface text-theme-text font-sans border-t border-theme-border selection:bg-neutral-200 selection:text-neutral-900">
       {/* Top Value Banner */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 py-10 border-b border-[#262626] flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="max-w-7xl mx-auto px-6 sm:px-12 py-10 border-b border-theme-border flex flex-col md:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-lg bg-[#171717] border border-[#262626] text-[#fafafa] flex items-center justify-center font-bold shadow-sm">
+          <div className="w-10 h-10 rounded-lg bg-theme-base border border-theme-border text-theme-text flex items-center justify-center font-bold shadow-xs">
             <HeartPulse className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="text-lg font-bold tracking-tight text-[#fafafa]">
+            <h3 className="text-lg font-bold tracking-tight text-theme-text">
               MEDASSIST HEALTHCARE SYSTEMS
             </h3>
-            <p className="text-xs text-[#a3a3a3] font-normal mt-0.5">
+            <p className="text-xs text-theme-textMuted font-normal mt-0.5">
               Enterprise Clinical Operations & Outpatient Care Portal
             </p>
           </div>
@@ -46,20 +46,20 @@ export const ClassicFooter = () => {
 
         {/* Security & Compliance Certifications Logos */}
         <div className="flex flex-wrap items-center gap-2.5">
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[#262626] bg-[#171717] text-xs font-mono text-[#a3a3a3]">
-            <ShieldCheck className="w-3.5 h-3.5 text-[#fafafa]" />
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-theme-border bg-theme-base text-xs font-mono text-theme-textMuted">
+            <ShieldCheck className="w-3.5 h-3.5 text-theme-text" />
             <span>HIPAA COMPLIANT</span>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[#262626] bg-[#171717] text-xs font-mono text-[#a3a3a3]">
-            <Award className="w-3.5 h-3.5 text-[#fafafa]" />
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-theme-border bg-theme-base text-xs font-mono text-theme-textMuted">
+            <Award className="w-3.5 h-3.5 text-theme-text" />
             <span>HL7 FHIR v4</span>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[#262626] bg-[#171717] text-xs font-mono text-[#a3a3a3]">
-            <Lock className="w-3.5 h-3.5 text-[#fafafa]" />
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-theme-border bg-theme-base text-xs font-mono text-theme-textMuted">
+            <Lock className="w-3.5 h-3.5 text-theme-text" />
             <span>256-BIT ENCRYPTION</span>
           </div>
-          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[#262626] bg-[#171717] text-xs font-mono text-[#a3a3a3]">
-            <FileText className="w-3.5 h-3.5 text-[#a3a3a3]" />
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-theme-border bg-theme-base text-xs font-mono text-theme-textMuted">
+            <FileText className="w-3.5 h-3.5 text-theme-textMuted" />
             <span>ISO 27001</span>
           </div>
         </div>
@@ -69,24 +69,24 @@ export const ClassicFooter = () => {
       <div className="max-w-7xl mx-auto px-6 sm:px-12 py-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
         {/* Column 1: Hospital Overview */}
         <div className="lg:col-span-2 space-y-3">
-          <h4 className="text-xs font-mono uppercase tracking-wider text-[#a3a3a3] font-medium">
+          <h4 className="text-xs font-mono uppercase tracking-wider text-theme-text font-semibold">
             Institutional Clinical Platform
           </h4>
-          <p className="text-xs text-[#a3a3a3] leading-relaxed max-w-sm">
+          <p className="text-xs text-theme-textMuted leading-relaxed max-w-sm">
             MedAssist provides an integrated electronic health record and outpatient coordination environment linking doctors, reception desks, diagnostic pathology laboratories, and patient portals with dual AI clinical synthesis.
           </p>
 
-          <div className="space-y-2 pt-2 text-xs text-[#a3a3a3]">
+          <div className="space-y-2 pt-2 text-xs text-theme-textMuted">
             <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-[#a3a3a3] shrink-0" />
+              <MapPin className="w-4 h-4 text-theme-textMuted shrink-0" />
               <span>100 Medical Center Plaza, Healthcare City, NY 10001</span>
             </div>
             <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-[#a3a3a3] shrink-0" />
+              <Phone className="w-4 h-4 text-theme-textMuted shrink-0" />
               <span>Direct Hotline: +1 (800) MED-ASST / (800) 633-2778</span>
             </div>
             <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-[#a3a3a3] shrink-0" />
+              <Mail className="w-4 h-4 text-theme-textMuted shrink-0" />
               <span>Clinical Registry: contact@medassist.clinic</span>
             </div>
           </div>
@@ -94,40 +94,40 @@ export const ClassicFooter = () => {
 
         {/* Column 2: Clinical Specialties */}
         <div className="space-y-3">
-          <h4 className="text-xs font-mono uppercase tracking-wider text-[#a3a3a3] font-medium">
+          <h4 className="text-xs font-mono uppercase tracking-wider text-theme-text font-semibold">
             SPECIALTIES
           </h4>
-          <ul className="space-y-2 text-xs text-[#a3a3a3]">
-            <li className="hover:text-[#fafafa] transition-colors cursor-pointer">Cardiology Services</li>
-            <li className="hover:text-[#fafafa] transition-colors cursor-pointer">General Internal Medicine</li>
-            <li className="hover:text-[#fafafa] transition-colors cursor-pointer">Endocrinology & Diabetes</li>
-            <li className="hover:text-[#fafafa] transition-colors cursor-pointer">Pathology Laboratory</li>
-            <li className="hover:text-[#fafafa] transition-colors cursor-pointer">Diagnostic Radiology</li>
-            <li className="hover:text-[#fafafa] transition-colors cursor-pointer">Outpatient Pharmacy</li>
+          <ul className="space-y-2 text-xs text-theme-textMuted">
+            <li className="hover:text-theme-text transition-colors cursor-pointer">Cardiology Services</li>
+            <li className="hover:text-theme-text transition-colors cursor-pointer">General Internal Medicine</li>
+            <li className="hover:text-theme-text transition-colors cursor-pointer">Endocrinology & Diabetes</li>
+            <li className="hover:text-theme-text transition-colors cursor-pointer">Pathology Laboratory</li>
+            <li className="hover:text-theme-text transition-colors cursor-pointer">Diagnostic Radiology</li>
+            <li className="hover:text-theme-text transition-colors cursor-pointer">Outpatient Pharmacy</li>
           </ul>
         </div>
 
         {/* Column 3: Platform Architecture */}
         <div className="space-y-3">
-          <h4 className="text-xs font-mono uppercase tracking-wider text-[#a3a3a3] font-medium">
+          <h4 className="text-xs font-mono uppercase tracking-wider text-theme-text font-semibold">
             CAPABILITIES
           </h4>
-          <ul className="space-y-2 text-xs text-[#a3a3a3]">
-            <li className="hover:text-[#fafafa] transition-colors cursor-pointer">AI SOAP Visit Synthesis</li>
-            <li className="hover:text-[#fafafa] transition-colors cursor-pointer">Patient Plain-Text Explainer</li>
-            <li className="hover:text-[#fafafa] transition-colors cursor-pointer">Slot Conflict Detection</li>
-            <li className="hover:text-[#fafafa] transition-colors cursor-pointer">Sequential Queue Tokens</li>
-            <li className="hover:text-[#fafafa] transition-colors cursor-pointer">Barcode Specimen Tracker</li>
-            <li className="hover:text-[#fafafa] transition-colors cursor-pointer">Immutable Audit Trail</li>
+          <ul className="space-y-2 text-xs text-theme-textMuted">
+            <li className="hover:text-theme-text transition-colors cursor-pointer">AI SOAP Visit Synthesis</li>
+            <li className="hover:text-theme-text transition-colors cursor-pointer">Patient Plain-Text Explainer</li>
+            <li className="hover:text-theme-text transition-colors cursor-pointer">Slot Conflict Detection</li>
+            <li className="hover:text-theme-text transition-colors cursor-pointer">Sequential Queue Tokens</li>
+            <li className="hover:text-theme-text transition-colors cursor-pointer">Barcode Specimen Tracker</li>
+            <li className="hover:text-theme-text transition-colors cursor-pointer">Immutable Audit Trail</li>
           </ul>
         </div>
 
         {/* Column 4: Email Test & Communication Dispatch */}
         <div className="space-y-3">
-          <h4 className="text-xs font-mono uppercase tracking-wider text-[#a3a3a3] font-medium">
+          <h4 className="text-xs font-mono uppercase tracking-wider text-theme-text font-semibold">
             SYSTEM DISPATCH
           </h4>
-          <p className="text-xs text-[#a3a3a3]">
+          <p className="text-xs text-theme-textMuted">
             Test dispatch service or subscribe for clinical protocol advisories:
           </p>
 
@@ -139,20 +139,20 @@ export const ClassicFooter = () => {
                 value={testEmail}
                 onChange={(e) => setTestEmail(e.target.value)}
                 placeholder="physician@hospital.org"
-                className="w-full px-3 py-2 text-xs bg-[#171717] border border-[#262626] rounded-md text-[#fafafa] placeholder-[#737373] focus:outline-none focus:border-[#525252] font-mono"
+                className="w-full px-3 py-2 text-xs bg-theme-base border border-theme-border rounded-md text-theme-text placeholder-neutral-400 focus:outline-none focus:border-neutral-400 font-mono"
               />
             </div>
             <button
               type="submit"
-              className="w-full py-2 px-3 rounded-md bg-[#fafafa] hover:bg-[#e5e5e5] text-[#0a0a0a] font-semibold text-xs flex items-center justify-center gap-1.5 transition-all shadow-sm"
+              className="w-full py-2 px-3 rounded-md bg-neutral-900 hover:bg-neutral-800 text-white font-semibold text-xs flex items-center justify-center gap-1.5 transition-all shadow-xs"
             >
               <Send className="w-3.5 h-3.5" /> Send Test Dispatch
             </button>
           </form>
 
           {subscribed && (
-            <div className="p-2.5 bg-[#171717] border border-[#262626] text-[#fafafa] rounded-md text-xs flex items-center gap-2 animate-in fade-in">
-              <CheckCircle2 className="w-4 h-4 shrink-0 text-[#fafafa]" />
+            <div className="p-2.5 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-md text-xs flex items-center gap-2 animate-in fade-in">
+              <CheckCircle2 className="w-4 h-4 shrink-0 text-emerald-600" />
               <span>✓ Test inquiry logged to clinical queue</span>
             </div>
           )}
@@ -160,14 +160,14 @@ export const ClassicFooter = () => {
       </div>
 
       {/* Bottom Copyright & Regulatory Footnote */}
-      <div className="max-w-7xl mx-auto px-6 sm:px-12 py-6 border-t border-[#262626] flex flex-col sm:flex-row items-center justify-between text-xs text-[#737373] gap-3">
+      <div className="max-w-7xl mx-auto px-6 sm:px-12 py-6 border-t border-theme-border flex flex-col sm:flex-row items-center justify-between text-xs text-theme-textMuted gap-3">
         <span>© 2026 MEDASSIST HEALTH SYSTEMS INC. ALL RIGHTS RESERVED.</span>
         <div className="flex items-center gap-4">
-          <span className="hover:text-[#a3a3a3] cursor-pointer">PRIVACY PROTOCOL</span>
+          <span className="hover:text-theme-text cursor-pointer">PRIVACY PROTOCOL</span>
           <span>•</span>
-          <span className="hover:text-[#a3a3a3] cursor-pointer">TERMS OF CLINICAL USE</span>
+          <span className="hover:text-theme-text cursor-pointer">TERMS OF CLINICAL USE</span>
           <span>•</span>
-          <span className="hover:text-[#a3a3a3] cursor-pointer">HIPAA NOTICE</span>
+          <span className="hover:text-theme-text cursor-pointer">HIPAA NOTICE</span>
         </div>
       </div>
     </footer>

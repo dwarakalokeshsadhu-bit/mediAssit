@@ -4,28 +4,29 @@
 
 @layer base {
   :root {
-    --theme-base: #0a0a0a;
-    --theme-surface: #171717;
-    --theme-surface-hover: #212121;
-    --theme-border: #262626;
-    --theme-text: #fafafa;
-    --theme-text-muted: #a3a3a3;
-    --theme-chart-stroke: #d4d4d4;
-    --theme-chart-dot: #e5e5e5;
-    --theme-chart-bar: #525252;
-    --theme-interactive: #262626;
-    --theme-interactive-hover: #333333;
+    --theme-base: #fafafa;
+    --theme-surface: #ffffff;
+    --theme-surface-hover: #f4f4f5;
+    --theme-border: #e4e4e7;
+    --theme-border-subtle: #f4f4f5;
+    --theme-text: #09090b;
+    --theme-text-muted: #71717a;
+    --theme-chart-stroke: #71717a;
+    --theme-chart-dot: #09090b;
+    --theme-chart-bar: #d4d4d8;
+    --theme-interactive: #ffffff;
+    --theme-interactive-hover: #f4f4f5;
   }
 
   body {
     font-family: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    color: #fafafa !important;
-    background-color: #0a0a0a !important;
+    color: #09090b !important;
+    background-color: #fafafa !important;
     letter-spacing: -0.02em;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    color: #fafafa !important;
+    color: #09090b !important;
     font-family: 'Inter', 'Plus Jakarta Sans', sans-serif !important;
     letter-spacing: -0.03em;
     font-weight: 700;
@@ -39,29 +40,29 @@
     outline: none;
   }
 
-  /* Prevent browser from tinting inputs with light blue or yellow autofill */
+  /* Prevent browser from tinting inputs with dark or mismatched autofill */
   input:-webkit-autofill,
   input:-webkit-autofill:hover, 
   input:-webkit-autofill:focus, 
   input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 50px #171717 inset !important;
-    -webkit-text-fill-color: #fafafa !important;
-    caret-color: #fafafa !important;
+    -webkit-box-shadow: 0 0 0 50px #ffffff inset !important;
+    -webkit-text-fill-color: #09090b !important;
+    caret-color: #09090b !important;
   }
 }
 
 /* ==========================================================================
-   GLOBAL DESIGN SYSTEM: LOW-SATURATION GRAYSCALE DARK THEME
-   Applies across all existing components & pages without individual edits.
+   GLOBAL DESIGN SYSTEM: HIGH-CONTRAST CLEAN LIGHT THEME
+   Applies across all existing components & pages automatically.
    ========================================================================== */
 
-/* 1. Base App Container & Body */
+/* 1. Base App Container & Body (#fafafa / #ffffff) */
 #root, main, .min-h-screen, .app-container {
-  background-color: #0a0a0a !important;
-  color: #fafafa !important;
+  background-color: #fafafa !important;
+  color: #09090b !important;
 }
 
-/* 2. Surfaces & Cards (#171717) */
+/* 2. Surfaces & Cards (#ffffff with subtle #e4e4e7 border) */
 .bg-white,
 .bg-slate-50,
 .bg-slate-100,
@@ -77,21 +78,21 @@ header,
 aside,
 nav[class*="bg-"],
 [class*="rounded-"][class*="border"] {
-  background-color: #171717 !important;
-  color: #fafafa !important;
-  border-color: #262626 !important;
+  background-color: #ffffff !important;
+  color: #09090b !important;
+  border-color: #e4e4e7 !important;
 }
 
 /* Clean background override for outer viewports */
 main, .main-viewport {
-  background-color: #0a0a0a !important;
+  background-color: #fafafa !important;
 }
 
-/* 3. Borders & Dividers (#262626 subtle 1px) */
+/* 3. Borders & Dividers (#e4e4e7 subtle 1px) */
 *,
 *:before,
 *:after {
-  border-color: #262626;
+  border-color: #e4e4e7;
 }
 
 .border,
@@ -108,16 +109,14 @@ main, .main-viewport {
 .divide-zinc-800 > *,
 .divide-y > *,
 .divide-x > * {
-  border-color: #262626 !important;
+  border-color: #e4e4e7 !important;
 }
 
-/* 4. Typography: Primary (#fafafa) & Secondary/Muted (#a3a3a3) */
+/* 4. Typography: Primary (#09090b) & Secondary/Muted (#71717a) */
 .text-black,
 .text-slate-900,
-.text-zinc-900,
-.text-white,
-.text-pureWhite {
-  color: #fafafa !important;
+.text-zinc-900 {
+  color: #09090b !important;
 }
 
 .text-slate-700,
@@ -128,151 +127,151 @@ main, .main-viewport {
 .text-zinc-400,
 .text-zinc-300,
 .text-muted,
-p:not(.text-primary) {
-  color: #a3a3a3 !important;
+p:not(.text-primary):not([class*="text-white"]):not([class*="text-emerald"]):not([class*="text-blue"]):not([class*="text-amber"]):not([class*="text-rose"]) {
+  color: #71717a !important;
 }
 
 /* 5. Inputs, Selects, Textareas */
 input:not([type="checkbox"]):not([type="radio"]),
 select,
 textarea {
-  background-color: #171717 !important;
-  color: #fafafa !important;
-  border: 1px solid #262626 !important;
+  background-color: #ffffff !important;
+  color: #09090b !important;
+  border: 1px solid #d4d4d8 !important;
   border-radius: 0.375rem !important;
 }
 
 input:focus,
 select:focus,
 textarea:focus {
-  border-color: #525252 !important;
-  box-shadow: 0 0 0 1px #525252 !important;
+  border-color: #09090b !important;
+  box-shadow: 0 0 0 1px #09090b !important;
 }
 
 input::placeholder,
 textarea::placeholder {
-  color: #737373 !important;
+  color: #a1a1aa !important;
 }
 
 /* 6. Tables */
 table {
-  color: #fafafa !important;
-  border-color: #262626 !important;
+  color: #09090b !important;
+  border-color: #e4e4e7 !important;
 }
 
 thead, thead tr, th {
-  background-color: #121212 !important;
-  color: #a3a3a3 !important;
-  border-color: #262626 !important;
+  background-color: #f4f4f5 !important;
+  color: #52525b !important;
+  border-color: #e4e4e7 !important;
 }
 
 tbody tr {
-  border-color: #262626 !important;
-  background-color: #171717 !important;
+  border-color: #e4e4e7 !important;
+  background-color: #ffffff !important;
 }
 
 tbody tr:hover {
-  background-color: #212121 !important;
+  background-color: #fafafa !important;
 }
 
 /* 7. Interactive Elements (+/- buttons, icon buttons) */
-/* Dark circular buttons with #262626 background, white icon, subtle hover */
 button[class*="rounded-full"],
 .btn-circle,
 .interactive-ctrl {
-  background-color: #262626 !important;
-  color: #fafafa !important;
-  border: 1px solid #262626 !important;
+  background-color: #ffffff !important;
+  color: #09090b !important;
+  border: 1px solid #e4e4e7 !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 button[class*="rounded-full"]:hover,
 .btn-circle:hover,
 .interactive-ctrl:hover {
-  background-color: #333333 !important;
-  border-color: #404040 !important;
-  color: #ffffff !important;
+  background-color: #f4f4f5 !important;
+  border-color: #d4d4d8 !important;
+  color: #000000 !important;
 }
 
-/* Primary Action Buttons: Muted Grayscale */
+/* Primary Action Buttons */
 .btn-primary,
 button[type="submit"] {
-  background-color: #fafafa !important;
-  color: #0a0a0a !important;
+  background-color: #09090b !important;
+  color: #ffffff !important;
   font-weight: 600;
-  border: 1px solid #fafafa !important;
+  border: 1px solid #09090b !important;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
 }
 
 .btn-primary:hover,
 button[type="submit"]:hover {
-  background-color: #e5e5e5 !important;
-  color: #0a0a0a !important;
+  background-color: #27272a !important;
+  color: #ffffff !important;
 }
 
 /* Secondary Buttons */
-button:not([type="submit"]):not([class*="rounded-full"]):not([class*="bg-transparent"]) {
-  background-color: #262626;
-  color: #fafafa;
-  border: 1px solid #333333;
+button:not([type="submit"]):not([class*="rounded-full"]):not([class*="bg-transparent"]):not([class*="bg-emerald"]):not([class*="bg-blue"]):not([class*="bg-amber"]):not([class*="bg-rose"]):not([class*="bg-purple"]):not([class*="bg-sky"]):not([class*="bg-black"]) {
+  background-color: #ffffff;
+  color: #09090b;
+  border: 1px solid #e4e4e7;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-button:not([type="submit"]):not([class*="rounded-full"]):not([class*="bg-transparent"]):hover {
-  background-color: #333333;
+button:not([type="submit"]):not([class*="rounded-full"]):not([class*="bg-transparent"]):not([class*="bg-emerald"]):not([class*="bg-blue"]):not([class*="bg-amber"]):not([class*="bg-rose"]):not([class*="bg-purple"]):not([class*="bg-sky"]):not([class*="bg-black"]):hover {
+  background-color: #f4f4f5;
 }
 
 /* 8. Chart & Data Visualization Styling */
-/* Chart/line strokes #d4d4d4 with data-point dots at #e5e5e5 */
 svg path[class*="stroke-"],
 svg line[class*="stroke-"],
 .recharts-line path,
 .chart-line {
-  stroke: #d4d4d4 !important;
+  stroke: #71717a !important;
 }
 
 svg circle[class*="fill-"],
 .recharts-line-dot,
 .chart-dot {
-  fill: #e5e5e5 !important;
-  stroke: #171717 !important;
+  fill: #09090b !important;
+  stroke: #ffffff !important;
 }
 
-/* Bar chart fills: #525252 (muted gray, no bright accent color) */
 svg rect[class*="fill-"],
 .recharts-bar-rectangle path,
 .recharts-bar-rectangle rect,
 .chart-bar {
-  fill: #525252 !important;
+  fill: #d4d4d8 !important;
 }
 
-/* 9. Minimalist Grayscale Badges */
-span[class*="rounded"][class*="text-xs"],
-.badge,
-.status-badge {
-  background-color: #212121 !important;
-  color: #fafafa !important;
-  border: 1px solid #262626 !important;
+/* 9. Minimalist Light Badges */
+span[class*="rounded"][class*="text-xs"]:not([class*="bg-emerald"]):not([class*="bg-blue"]):not([class*="bg-amber"]):not([class*="bg-rose"]):not([class*="bg-purple"]):not([class*="bg-teal"]),
+.badge:not([class*="bg-emerald"]):not([class*="bg-blue"]):not([class*="bg-amber"]):not([class*="bg-rose"]):not([class*="bg-purple"]) {
+  background-color: #f4f4f5 !important;
+  color: #09090b !important;
+  border: 1px solid #e4e4e7 !important;
 }
 
-/* 10. Custom Minimalist Grayscale Scrollbar */
+/* 10. Minimalist Light Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a0a0a;
+  background: #fafafa;
 }
 ::-webkit-scrollbar-thumb {
-  background: #262626;
+  background: #d4d4d8;
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #404040;
+  background: #a1a1aa;
 }
 
 /* 11. Modal Backdrop */
 .modal-backdrop,
-div[class*="fixed inset-0"][class*="bg-black"] {
-  background-color: rgba(10, 10, 10, 0.85) !important;
-  backdrop-filter: blur(8px);
+div[class*="fixed inset-0"][class*="bg-black"],
+div[class*="fixed inset-0"][class*="bg-[#0a0a0a]"] {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(4px);
 }

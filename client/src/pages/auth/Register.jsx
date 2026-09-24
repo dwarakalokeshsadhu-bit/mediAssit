@@ -334,7 +334,7 @@ export const Register = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-2.5 px-4 rounded-md bg-theme-text text-theme-base font-semibold text-sm hover:bg-[#e5e5e5] transition-colors disabled:opacity-50 shadow-sm mt-3"
+              className="w-full py-2.5 px-4 rounded-md bg-neutral-900 text-white font-semibold text-sm hover:bg-neutral-800 transition-colors disabled:opacity-50 shadow-xs mt-3"
             >
               {loading ? 'Creating Account...' : 'Register'}
             </button>

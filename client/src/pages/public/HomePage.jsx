@@ -68,13 +68,13 @@ export const HomePage = () => {
           <div className="hidden sm:flex items-center gap-3">
             <Link
               to="/login"
-              className="px-3.5 py-1.5 text-xs font-semibold text-theme-text hover:text-white border border-transparent hover:border-theme-border rounded-md transition-colors"
+              className="px-3.5 py-1.5 text-xs font-semibold text-theme-text hover:bg-neutral-100 border border-theme-border rounded-md transition-colors"
             >
               Log in
             </Link>
             <Link
               to="/register"
-              className="px-4 py-1.5 bg-theme-text text-theme-base font-semibold text-xs rounded-md hover:bg-[#e5e5e5] transition-all shadow-sm"
+              className="px-4 py-1.5 bg-neutral-900 text-white font-semibold text-xs rounded-md hover:bg-neutral-800 transition-all shadow-xs"
             >
               Register
             </Link>
@@ -174,7 +174,7 @@ export const HomePage = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto mb-12">
             <button
               onClick={() => navigate('/login')}
-              className="w-full sm:w-auto px-6 py-3 rounded-md bg-theme-text text-theme-base font-semibold text-sm hover:bg-[#e5e5e5] transition-colors flex items-center justify-center gap-2 shadow-sm"
+              className="w-full sm:w-auto px-6 py-3 rounded-md bg-neutral-900 text-white font-semibold text-sm hover:bg-neutral-800 transition-colors flex items-center justify-center gap-2 shadow-xs"
             >
               <span>Access Clinic Portal</span>
               <ChevronRight className="w-4 h-4" />

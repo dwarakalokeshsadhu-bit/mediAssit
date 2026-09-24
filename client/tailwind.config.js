@@ -21,20 +21,20 @@ export default {
         '3xl': '1.5rem',
       },
       colors: {
-        // Global Low-Saturation Grayscale Dark Theme Tokens
+        // Global High-Contrast Clean Light Theme Tokens
         theme: {
-          base: '#0a0a0a',
-          surface: '#171717',
-          surfaceHover: '#212121',
-          border: '#262626',
-          borderSubtle: '#1f1f1f',
-          text: '#fafafa',
-          textMuted: '#a3a3a3',
-          chartStroke: '#d4d4d4',
-          chartDot: '#e5e5e5',
-          chartBar: '#525252',
-          interactive: '#262626',
-          interactiveHover: '#333333',
+          base: '#fafafa',
+          surface: '#ffffff',
+          surfaceHover: '#f4f4f5',
+          border: '#e4e4e7',
+          borderSubtle: '#f4f4f5',
+          text: '#09090b',
+          textMuted: '#71717a',
+          chartStroke: '#71717a',
+          chartDot: '#09090b',
+          chartBar: '#d4d4d8',
+          interactive: '#ffffff',
+          interactiveHover: '#f4f4f5',
         },
       },
       animation: {
