@@ -207,17 +207,12 @@ export const Login = () => {
                 <span>Remember me</span>
               </label>
 
-              <button
-                type="button"
-                onClick={() =>
-                  alert(
-                    'For security, password resets are coordinated through your clinic administrator or front-desk verification.'
-                  )
-                }
+              <Link
+                to="/forgot-password"
                 className="text-theme-textMuted hover:text-theme-text transition-colors underline underline-offset-2"
               >
                 Forgot password?
-              </button>
+              </Link>
             </div>
 
             {/* Primary Login Button */}

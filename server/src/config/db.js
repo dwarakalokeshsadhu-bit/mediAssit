@@ -17,7 +17,7 @@ export const connectDB = async () => {
   const options = {
     maxPoolSize: 10,
     minPoolSize: 2,
-    serverSelectionTimeoutMS: 8000,
+    serverSelectionTimeoutMS: 20000,
     socketTimeoutMS: 45000,
   };
 

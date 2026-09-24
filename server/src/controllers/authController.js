@@ -4,6 +4,7 @@ import { PatientProfile } from '../models/PatientProfile.js';
 import { DoctorProfile } from '../models/DoctorProfile.js';
 import { Department } from '../models/Department.js';
 import { logAudit } from '../services/auditService.js';
+import { sendPasswordResetCode } from '../services/emailService.js';
 
 const generateToken = (id) => {
   return jwt.sign(
@@ -255,4 +256,160 @@ export const logout = async (req, res) => {
     success: true,
     message: 'Logged out successfully',
   });
+};
+
+// @desc    Request Password Reset Verification Code
+// @route   POST /api/auth/forgot-password
+export const forgotPassword = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+
+    if (!email) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide your registered email address.',
+      });
+    }
+
+    const user = await User.findOne({ email: email.toLowerCase().trim() });
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'No registered user found with this email address.',
+      });
+    }
+
+    // Generate random 6-digit verification code
+    const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+    // Set code and expiration (15 minutes)
+    user.resetPasswordCode = verificationCode;
+    user.resetPasswordExpires = new Date(Date.now() + 15 * 60 * 1000);
+    await user.save();
+
+    // Dispatch email
+    const emailResult = await sendPasswordResetCode(user.email, verificationCode, user.name);
+
+    await logAudit({
+      actor: user,
+      action: 'PASSWORD_RESET_REQUESTED',
+      resource: 'User',
+      resourceId: user._id,
+      details: { email: user.email, emailSent: emailResult.sent },
+    });
+
+    res.json({
+      success: true,
+      message: emailResult.sent
+        ? 'A 6-digit verification code has been dispatched to your email address.'
+        : 'A 6-digit verification code has been generated.',
+      email: user.email,
+      emailSent: emailResult.sent,
+      previewCode: !emailResult.sent ? verificationCode : undefined,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// @desc    Verify Password Reset Verification Code
+// @route   POST /api/auth/verify-reset-code
+export const verifyResetCode = async (req, res, next) => {
+  try {
+    const { email, code } = req.body;
+
+    if (!email || !code) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide both your email and the 6-digit verification code.',
+      });
+    }
+
+    const user = await User.findOne({ email: email.toLowerCase().trim() }).select(
+      '+resetPasswordCode +resetPasswordExpires'
+    );
+
+    if (!user || !user.resetPasswordCode || user.resetPasswordCode !== code.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid verification code. Please check and try again.',
+      });
+    }
+
+    if (user.resetPasswordExpires < new Date()) {
+      return res.status(400).json({
+        success: false,
+        message: 'The verification code has expired. Please request a new code.',
+      });
+    }
+
+    res.json({
+      success: true,
+      message: 'Verification code confirmed. You can now choose a new password.',
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// @desc    Reset Password using Verification Code
+// @route   POST /api/auth/reset-password
+export const resetPassword = async (req, res, next) => {
+  try {
+    const { email, code, newPassword } = req.body;
+
+    if (!email || !code || !newPassword) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide your email, verification code, and new password.',
+      });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({
+        success: false,
+        message: 'New password must be at least 6 characters long.',
+      });
+    }
+
+    const user = await User.findOne({ email: email.toLowerCase().trim() }).select(
+      '+password +resetPasswordCode +resetPasswordExpires'
+    );
+
+    if (!user || !user.resetPasswordCode || user.resetPasswordCode !== code.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: 'Invalid verification code. Please request a new code.',
+      });
+    }
+
+    if (user.resetPasswordExpires < new Date()) {
+      return res.status(400).json({
+        success: false,
+        message: 'The verification code has expired. Please request a new code.',
+      });
+    }
+
+    // Update password (pre-save hook will hash it with bcrypt)
+    user.password = newPassword;
+    user.resetPasswordCode = undefined;
+    user.resetPasswordExpires = undefined;
+    await user.save();
+
+    await logAudit({
+      actor: user,
+      action: 'PASSWORD_RESET_COMPLETED',
+      resource: 'User',
+      resourceId: user._id,
+      details: { email: user.email },
+    });
+
+    res.json({
+      success: true,
+      message: 'Your password has been successfully reset. You may now log in.',
+    });
+  } catch (error) {
+    next(error);
+  }
 };
