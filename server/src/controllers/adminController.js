@@ -37,6 +37,42 @@ export const getUsers = async (req, res, next) => {
   }
 };
 
+// @desc    Get active doctors for appointment scheduling
+// @route   GET /api/admin/doctors
+export const getDoctors = async (req, res, next) => {
+  try {
+    const doctors = await User.find({ role: 'doctor', isActive: true })
+      .select('-password')
+      .sort({ name: 1 });
+
+    res.json({
+      success: true,
+      count: doctors.length,
+      doctors,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+// @desc    Get active patients for clinical and reception workflows
+// @route   GET /api/admin/patients
+export const getPatients = async (req, res, next) => {
+  try {
+    const patients = await User.find({ role: 'patient', isActive: true })
+      .select('-password')
+      .sort({ name: 1 });
+
+    res.json({
+      success: true,
+      count: patients.length,
+      patients,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 // @desc    Toggle User Active Status
 // @route   PATCH /api/admin/users/:id/status
 export const toggleUserStatus = async (req, res, next) => {

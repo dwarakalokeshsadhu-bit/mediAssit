@@ -133,7 +133,7 @@ export const Login = () => {
                 htmlFor="email"
                 className="block text-xs font-medium text-theme-text mb-1.5"
               >
-                {portalMode === 'staff' ? 'Institutional Email / Username' : 'Email Address'}
+                {portalMode === 'staff' ? 'Institutional Email Address' : 'Email Address'}
               </label>
               <div className="relative">
                 <Mail className="w-4 h-4 text-theme-textMuted absolute left-3 top-3 pointer-events-none" />

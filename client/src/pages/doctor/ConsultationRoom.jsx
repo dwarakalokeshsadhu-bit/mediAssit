@@ -93,14 +93,14 @@ export const ConsultationRoom = () => {
   const fetchInitialData = async () => {
     try {
       const [ptsRes, srvRes] = await Promise.all([
-        api.get('/admin/users?role=patient'),
+        api.get('/admin/patients'),
         api.get('/admin/services?category=lab_test'),
       ]);
 
       if (ptsRes.data.success) {
-        setPatients(ptsRes.data.users);
-        if (!selectedPatientId && ptsRes.data.users.length > 0) {
-          setSelectedPatientId(ptsRes.data.users[0]._id);
+        setPatients(ptsRes.data.patients);
+        if (!selectedPatientId && ptsRes.data.patients.length > 0) {
+          setSelectedPatientId(ptsRes.data.patients[0]._id);
         }
       }
 

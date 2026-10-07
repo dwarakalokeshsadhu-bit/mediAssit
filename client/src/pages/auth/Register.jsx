@@ -10,7 +10,16 @@ import {
   AlertCircle,
   Eye,
   EyeOff,
+  Building2,
 } from 'lucide-react';
+
+const ACCOUNT_TYPES = [
+  { value: 'patient', label: 'Patient' },
+  { value: 'receptionist', label: 'Reception' },
+  { value: 'doctor', label: 'Doctor' },
+  { value: 'lab_tech', label: 'Lab Tech' },
+  { value: 'admin', label: 'Admin' },
+];
 
 export const Register = () => {
   const { register } = useAuth();
@@ -22,6 +31,7 @@ export const Register = () => {
     phone: '',
     password: '',
     confirmPassword: '',
+    role: 'patient',
     acceptTerms: false,
   });
 
@@ -76,11 +86,11 @@ export const Register = () => {
         email: formData.email.trim().toLowerCase(),
         phone: formData.phone.trim(),
         password: formData.password,
-        role: 'patient',
+        role: formData.role,
       };
 
       await register(payload);
-      navigate('/patient');
+      redirectRole(formData.role);
     } catch (err) {
       setError(
         err.response?.data?.message ||
@@ -89,6 +99,14 @@ export const Register = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const redirectRole = (role) => {
+    if (role === 'admin') navigate('/admin');
+    else if (role === 'doctor') navigate('/doctor');
+    else if (role === 'receptionist') navigate('/reception');
+    else if (role === 'lab_tech') navigate('/lab');
+    else navigate('/patient');
   };
 
   return (
@@ -105,7 +123,7 @@ export const Register = () => {
               Create an Account
             </h1>
             <p className="text-xs text-theme-textMuted mt-0.5">
-              Register for MedAssist patient care
+              Register for MedAssist patient care or clinical operations
             </p>
           </div>
 
@@ -119,6 +137,40 @@ export const Register = () => {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-xs font-medium text-theme-text mb-2">
+                Account Type
+              </label>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                {ACCOUNT_TYPES.map((accountType) => {
+                  const isSelected = formData.role === accountType.value;
+                  const Icon = accountType.value === 'patient' ? User : Building2;
+
+                  return (
+                    <label
+                      key={accountType.value}
+                      className={`flex items-center gap-2 p-2.5 rounded-md border text-xs cursor-pointer transition-colors ${
+                        isSelected
+                          ? 'border-theme-text bg-theme-base text-theme-text font-semibold'
+                          : 'border-theme-border bg-theme-base/50 text-theme-textMuted hover:text-theme-text'
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="role"
+                        value={accountType.value}
+                        checked={isSelected}
+                        onChange={handleChange}
+                        className="sr-only"
+                      />
+                      <Icon className="w-3.5 h-3.5 shrink-0" />
+                      <span>{accountType.label}</span>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+
             {/* Full Name */}
             <div>
               <label

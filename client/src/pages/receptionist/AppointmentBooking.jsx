@@ -38,12 +38,12 @@ export const AppointmentBooking = () => {
   const loadMetadata = async () => {
     try {
       const [ptRes, dpRes, docRes] = await Promise.all([
-        api.get('/admin/users?role=patient'),
+        api.get('/admin/patients'),
         api.get('/admin/departments'),
-        api.get('/admin/users?role=doctor'),
+        api.get('/admin/doctors'),
       ]);
 
-      if (ptRes.data.success) setPatients(ptRes.data.users);
+      if (ptRes.data.success) setPatients(ptRes.data.patients);
       if (dpRes.data.success) {
         setDepartments(dpRes.data.departments);
         if (dpRes.data.departments.length > 0) {
@@ -51,9 +51,9 @@ export const AppointmentBooking = () => {
         }
       }
       if (docRes.data.success) {
-        setDoctors(docRes.data.users);
-        if (docRes.data.users.length > 0) {
-          setSelectedDoctor(docRes.data.users[0]._id);
+        setDoctors(docRes.data.doctors);
+        if (docRes.data.doctors.length > 0) {
+          setSelectedDoctor(docRes.data.doctors[0]._id);
         }
       }
     } catch (err) {

@@ -46,14 +46,14 @@ export const MyAppointments = () => {
     try {
       const [dpRes, docRes] = await Promise.all([
         api.get('/admin/departments'),
-        api.get('/admin/users?role=doctor'),
+        api.get('/admin/doctors'),
       ]);
       if (dpRes.data.success) setDepartments(dpRes.data.departments);
       if (docRes.data.success) {
-        setDoctors(docRes.data.users);
-        if (docRes.data.users.length > 0) {
-          setSelectedDoc(docRes.data.users[0]._id);
-          loadSlots(docRes.data.users[0]._id, selectedDate);
+        setDoctors(docRes.data.doctors);
+        if (docRes.data.doctors.length > 0) {
+          setSelectedDoc(docRes.data.doctors[0]._id);
+          loadSlots(docRes.data.doctors[0]._id, selectedDate);
         }
       }
     } catch (e) {
@@ -183,10 +183,11 @@ export const MyAppointments = () => {
                 value={selectedDoc}
                 onChange={(e) => {
                   setSelectedDoc(e.target.value);
-                  loadSlots(e.target.value, selectedDate);
+                  if (e.target.value) loadSlots(e.target.value, selectedDate);
                 }}
                 className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl"
               >
+                <option value="">Select a physician</option>
                 {doctors.map((d) => (
                   <option key={d._id} value={d._id}>
                     {d.name}
@@ -203,7 +204,7 @@ export const MyAppointments = () => {
                 value={selectedDate}
                 onChange={(e) => {
                   setSelectedDate(e.target.value);
-                  loadSlots(selectedDoc, e.target.value);
+                  if (selectedDoc) loadSlots(selectedDoc, e.target.value);
                 }}
                 className="w-full px-3 py-2 text-xs border border-slate-200 rounded-xl"
               />

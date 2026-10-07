@@ -1,6 +1,8 @@
 import express from 'express';
 import {
   getUsers,
+  getDoctors,
+  getPatients,
   toggleUserStatus,
   getAdminMetrics,
   getAuditLogs,
@@ -19,6 +21,8 @@ router.use(authenticateToken);
 // Publicly readable for appointment scheduling & catalog
 router.get('/departments', getDepartments);
 router.get('/services', getServices);
+router.get('/doctors', getDoctors);
+router.get('/patients', requireRoles('admin', 'doctor', 'receptionist'), getPatients);
 
 // Admin-only endpoints
 router.use(requireRoles('admin'));
