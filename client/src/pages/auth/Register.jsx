@@ -10,7 +10,6 @@ import {
   AlertCircle,
   Eye,
   EyeOff,
-  CheckCircle2,
 } from 'lucide-react';
 
 export const Register = () => {
@@ -23,7 +22,6 @@ export const Register = () => {
     phone: '',
     password: '',
     confirmPassword: '',
-    role: 'patient', // 'patient' | 'receptionist' | 'doctor'
     acceptTerms: false,
   });
 
@@ -78,21 +76,11 @@ export const Register = () => {
         email: formData.email.trim().toLowerCase(),
         phone: formData.phone.trim(),
         password: formData.password,
-        role: formData.role,
+        role: 'patient',
       };
 
-      const res = await register(payload);
-
-      // Route based on role
-      if (formData.role === 'patient') {
-        navigate('/patient');
-      } else if (formData.role === 'receptionist') {
-        navigate('/reception');
-      } else if (formData.role === 'doctor') {
-        navigate('/doctor');
-      } else {
-        navigate('/login');
-      }
+      await register(payload);
+      navigate('/patient');
     } catch (err) {
       setError(
         err.response?.data?.message ||
@@ -117,7 +105,7 @@ export const Register = () => {
               Create an Account
             </h1>
             <p className="text-xs text-theme-textMuted mt-0.5">
-              Register for MedAssist patient care or clinical operations
+              Register for MedAssist patient care
             </p>
           </div>
 
@@ -131,50 +119,6 @@ export const Register = () => {
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Role Selection: Simple, non-decorative radio group */}
-            <div>
-              <label className="block text-xs font-medium text-theme-text mb-2">
-                Account Type
-              </label>
-              <div className="grid grid-cols-2 gap-2">
-                <label
-                  className={`flex items-center gap-2 p-2.5 rounded-md border text-xs cursor-pointer transition-colors ${
-                    formData.role === 'patient'
-                      ? 'border-theme-text bg-theme-base text-theme-text font-semibold'
-                      : 'border-theme-border bg-theme-base/50 text-theme-textMuted hover:text-theme-text'
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="role"
-                    value="patient"
-                    checked={formData.role === 'patient'}
-                    onChange={handleChange}
-                    className="text-theme-text bg-theme-base border-theme-border focus:ring-0"
-                  />
-                  <span>Patient (Outpatient)</span>
-                </label>
-
-                <label
-                  className={`flex items-center gap-2 p-2.5 rounded-md border text-xs cursor-pointer transition-colors ${
-                    formData.role === 'receptionist'
-                      ? 'border-theme-text bg-theme-base text-theme-text font-semibold'
-                      : 'border-theme-border bg-theme-base/50 text-theme-textMuted hover:text-theme-text'
-                  }`}
-                >
-                  <input
-                    type="radio"
-                    name="role"
-                    value="receptionist"
-                    checked={formData.role === 'receptionist'}
-                    onChange={handleChange}
-                    className="text-theme-text bg-theme-base border-theme-border focus:ring-0"
-                  />
-                  <span>Clinic Staff (Reception)</span>
-                </label>
-              </div>
-            </div>
-
             {/* Full Name */}
             <div>
               <label

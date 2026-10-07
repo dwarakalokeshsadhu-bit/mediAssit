@@ -14,7 +14,6 @@ import {
   EyeOff,
   RefreshCw,
   ShieldCheck,
-  Sparkles,
 } from 'lucide-react';
 
 export const ForgotPassword = () => {
@@ -29,7 +28,6 @@ export const ForgotPassword = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
-  const [previewCode, setPreviewCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -56,10 +54,6 @@ export const ForgotPassword = () => {
       const res = await api.post('/auth/forgot-password', { email });
       if (res.data.success) {
         setSuccessMessage(res.data.message);
-        if (res.data.previewCode) {
-          setPreviewCode(res.data.previewCode);
-          setCode(res.data.previewCode); // auto-fill for convenience in test/demo mode
-        }
         setStep(2);
         setCooldown(30);
       }
@@ -84,10 +78,6 @@ export const ForgotPassword = () => {
       const res = await api.post('/auth/forgot-password', { email });
       if (res.data.success) {
         setSuccessMessage('A fresh verification code has been dispatched.');
-        if (res.data.previewCode) {
-          setPreviewCode(res.data.previewCode);
-          setCode(res.data.previewCode);
-        }
         setCooldown(30);
       }
     } catch (err) {
@@ -303,19 +293,6 @@ export const ForgotPassword = () => {
                   Change
                 </button>
               </div>
-
-              {/* Dev Preview Helper Box */}
-              {previewCode && (
-                <div className="p-3 bg-amber-50 border border-amber-200 text-amber-900 rounded-md text-xs space-y-1">
-                  <div className="flex items-center gap-1.5 font-semibold text-amber-900">
-                    <Sparkles className="w-3.5 h-3.5 text-amber-700" />
-                    <span>Direct Verification Code Preview</span>
-                  </div>
-                  <p className="text-[11px] text-amber-800">
-                    Your code is <strong className="font-mono text-sm tracking-wider text-black bg-amber-100 px-1.5 py-0.5 rounded border border-amber-300">{previewCode}</strong>. (Auto-filled below).
-                  </p>
-                </div>
-              )}
 
               <div>
                 <label className="block text-xs font-mono font-medium text-theme-text uppercase tracking-wider mb-1.5">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth, DEMO_CREDENTIALS } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 import { AuthHeader } from '../../components/AuthHeader';
 import {
   Lock,
@@ -24,7 +24,6 @@ export const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [showDemoCredentials, setShowDemoCredentials] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,20 +40,6 @@ export const Login = () => {
       );
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleQuickFill = (roleKey) => {
-    const cred = DEMO_CREDENTIALS[roleKey];
-    if (cred) {
-      setEmail(cred.email);
-      setPassword(cred.password);
-      if (roleKey === 'patient') {
-        setPortalMode('patient');
-      } else {
-        setPortalMode('staff');
-      }
-      setError('');
     }
   };
 
@@ -224,38 +209,6 @@ export const Login = () => {
               {loading ? 'Verifying Credentials...' : 'Log In'}
             </button>
           </form>
-
-          {/* Clean Demo Quick-Fill for Evaluation */}
-          <div className="pt-2 border-t border-theme-border">
-            <button
-              type="button"
-              onClick={() => setShowDemoCredentials(!showDemoCredentials)}
-              className="w-full text-center text-[11px] font-mono text-theme-textMuted hover:text-theme-text transition-colors"
-            >
-              {showDemoCredentials ? '▲ Hide Quick-Fill Accounts' : '▼ Quick-Fill Test Roles'}
-            </button>
-
-            {showDemoCredentials && (
-              <div className="mt-2.5 grid grid-cols-3 sm:grid-cols-5 gap-1.5 pt-1">
-                {[
-                  { key: 'admin', label: 'Admin' },
-                  { key: 'doctor', label: 'Doctor' },
-                  { key: 'receptionist', label: 'Reception' },
-                  { key: 'lab_tech', label: 'Lab Tech' },
-                  { key: 'patient', label: 'Patient' },
-                ].map((item) => (
-                  <button
-                    key={item.key}
-                    type="button"
-                    onClick={() => handleQuickFill(item.key)}
-                    className="py-1 px-1.5 rounded text-[10px] font-mono border border-theme-border bg-theme-base hover:bg-theme-surface text-theme-textMuted hover:text-theme-text text-center transition-colors"
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
 
           {/* Small link below card: Register */}
           <div className="pt-4 border-t border-theme-border text-center text-xs text-theme-textMuted">

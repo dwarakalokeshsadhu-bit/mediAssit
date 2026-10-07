@@ -299,14 +299,18 @@ export const forgotPassword = async (req, res, next) => {
       details: { email: user.email, emailSent: emailResult.sent },
     });
 
+    if (!emailResult.sent) {
+      return res.status(502).json({
+        success: false,
+        message: 'Unable to dispatch the verification code. Please try again later.',
+      });
+    }
+
     res.json({
       success: true,
-      message: emailResult.sent
-        ? 'A 6-digit verification code has been dispatched to your email address.'
-        : 'A 6-digit verification code has been generated.',
+      message: 'A 6-digit verification code has been dispatched to your email address.',
       email: user.email,
       emailSent: emailResult.sent,
-      previewCode: !emailResult.sent ? verificationCode : undefined,
     });
   } catch (error) {
     next(error);
